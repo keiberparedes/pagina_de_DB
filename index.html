@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Bases de datos</title>
+</head>
+<body>
+   
+    <h1> Aprendamos un poco sobre Base de Datos</h1>
+   
+   <nav>
+    <ul>
+        <li><a href="">Inicio</a></li>
+        <li><a href="">Contactanos</a></li>
+    </ul>
+   </nav>
+
+   <div class="contenido">
+    <div class="articulos">
+
+        <div class="secciones">
+            <div>
+                <h2>Lenguaje PLPGSQL </h2>
+                <p>PL/pgSQL (Procedural Language/PostgreSQL Structured Query Language) es un lenguaje de programación imperativo y procedimental provisto por el gestor de bases de datos PostgreSQL . Es un lenguaje potente y flexible que permite crear funciones y procedimientos almacenados en la base de datos para realizar diversas tareas de manejo de datos. Ejemplo de su sintaxis:
+
+                </p>
+                <p>CREATE OR REPLACE FUNCTION nombre_funcion(parametro1 tipo1, parametro2 tipo2, ...) RETURNS tipo_retorno AS</p>
+                <p>$$ <br>
+                    DECLARE <br> <br>
+
+                    -- Declaración de variables locales <br>
+                    BEGIN <br>
+                    - Código de la función <br>
+                    END; <br> <br>
+                    $$
+
+                    <p>En donde: <br>
+                        nombre_funcion es el nombre que se le quiere dar a la función. <br>
+                        parametro1, parametro2, ... son los parámetros que recibe la función, seguidos de su tipo de datos. <br>
+                         
+                        <ul>
+                            <li>Tipo_retorno: es el tipo de dato que retorna la función.</li>
+                            <li>Declaración de variables locales: es la sección donde se pueden declarar variables que se utilizarán en el código de la función.</li>
+                            <li>Código de la función: es la sección donde se escribirá el código que hará la función.</li>
+                        </ul>
+    
+                        Plpgsql es el nombre del lenguaje de programación en el que se está escribiendo la función. <br> <br>
+                        Es importante mencionar que la sección de declaración de variables locales y la sección de código de la función no son obligatorias , dependen de las necesidades específicas de cada función <br>
+                 </p>
+            
+            </div>
+
+            
+        </div>
+
+        <div class="secciones">
+            <div>
+                <h2>Conceptos DML y DDL</h2>
+
+
+                <p>
+                    Los conceptos DDL (Data Definition Language) y DML (Data Manipulation Language) son importantes para el manejo y la gestión de bases de datos.   <br>
+                    DDL es un conjunto de sentencias que se utilizan para definir y mantener la estructura de la base de datos, incluyendo la creación, modificación y eliminación de tablas, índices, vistas y otros objetos. Es decir, DDL se encarga de definir la estructura de la base de datos. <br>
+                    Por otro lado, DML es un conjunto de sentencias que se utilizan para manipular los datos almacenados en la base de datos. Las sentencias DML se utilizan para insertar, actualizar, eliminar y seleccionar información de las tablas de la base de datos. Es decir, DML se encarga de manipular la información contenida en la estructura definida por DDL. <br>
+                    Ambos conceptos son esenciales en el manejo de bases de datos, y es importante conocer la diferencia para poder hacer un uso adecuado de cada tipo de sentencia en las diferentes tareas de gestión de datos. <br> <br>
+                    
+                    Ejemplos de sentencias DDL: <br> <br>
+                    - CREATE TABLE: Crea una nueva tabla en la base de datos <br>
+                    CREATE TABLE empleados( <br>
+                    id SERIAL PRIMARY KEY, <br>
+                    nombre VARCHAR(50), <br>
+                    salario NUMERIC); <br> <br>
+
+                    - ALTER TABLE: Modifica una tabla existente en la base de datos, por ejemplo, añade o quita columnas <br>
+                    ALTER TABLE empleados ADD COLUMN edad INTEGER; <br> <br>
+
+                    DROP TABLE: Elimina una tabla de la base de datos <br>
+                    DROP TABLE empleados; <br> <br>
+
+                    CREATE INDEX: Crea un índice para acelerar la búsqueda en una tabla <br>
+                    CREATE INDEX idx_empleados_nombre ON empleados (nombre); <br>
+
+                    - CREATE VIEW: Crea una vista que es una representación virtual de los datos de una o varias tablas <br>
+                    CREATE VIEW vista_empleados AS SELECT nombre, salario FROM empleados ORDER BY salario DESC;
+
+
+                </p>
+
+                
+            </div>
+            
+        </div>
+
+        <div class="secciones">
+            <div>
+                <h2>Ejemplos de sentencias DML:</h2>
+                <p> - INSERT INTO: Inserta nuevos datos en una tabla específica <br> <br>
+                    INSERT INTO empleados (nombre, salario) VALUES ('Juan', 50000); <br> <br>
+                    - UPDATE: Modifica los datos existentes en una o varias filas de una tabla <br> <br>
+                    UPDATE empleados SET salario = 55000 WHERE id = 1; <br> <br>
+                    - DELETE FROM: Elimina las filas de una tabla específica <br> <br>
+                    DELETE FROM empleados WHERE edad < 25; <br> <br>
+                    - SELECT: Selecciona los datos de una tabla específica, ya sea para visualización o para su posterior tratamiento con una sentencia DML <br> <br>
+                    SELECT * FROM empleados WHERE salario > 40000; <br> <br>
+
+                    Es de recordar que estos son solo algunos ejemplos de sentencias DDL y DML en PostgreSQL, y que hay muchas más disponibles dependiendo de tus requerimientos específicos. <br>
+
+
+
+                </p>
+            </div>
+            <div>
+                <img src="img/dml.png" >
+            </div>
+        </div>
+        
+        <div class="secciones">
+            <div>
+                <h2>Procedimientos almacenados</h2>
+                <p>Un procedimiento almacenado se puede definir como un programa, procedimiento ó función, el cual está almacenado en la base de datos y listo para ser usado. <br>
+                    Un procedimiento almacenado en PostgreSQL se puede escribir en multiples lenguajes de programación. En una instalación por defecto de PostgreSQL podremos tener disponibles los siguientes lenguajes: PL/pgSQL, PL/Perl, PL/Tcl y PL/Python. <br>
+                    El único lenguaje que está disponible automáticamente es PL/pgSQL. Para utilizar PL/Perl, PL/Tcl o PL/Python tendremos que haber configurado/compilado PostgreSQL con estos parámetros --with-perl --with-tcl --with-python. <br>
+
+                    <h3>PL/pgSQL</h3>
+
+                    <p>
+                        Vamos a utilizar el lenguaje de procedimientos PL/pgSQL por ser el que tendremos disponible. PL/pgSQL es unos de los mejores lenguajes de procedimientos que podemos usar en PostgreSQL, es fácil de aprender, potente y siempre está disponible. <br>
+
+                        /pgSQL es un lenguaje estructurado en bloques. Como mínimo tendremos un bloque principal en nuestro procedimiento almacenado y dentro de este podremos tener subbloques. Un bloque se define de la siguiente manera (Todo entre los corchetes [ ] es opcional): <br> <br>
+
+                        [ << etiqueta >> ] <br> <br>
+                        [ DECLARE <br> <br>
+                        declaraciones de variables ] <br> <br>
+
+                        BEGIN <br>
+                        codigo <br>
+                        END [ etiqueta ]; <br> <br>
+
+                        Podemos definir e instalar un procedimiento en PL/pgSQL de la siguiente manera: <br>
+                        CREATE [ OR REPLACE ] FUNCTION  <br>
+                        nombre_funcion([ [ argmodo ] [ argnombre ] argtipo [, ...] ])  <br>
+                        RETURNS tipo AS $$ <br>
+                        [ DECLARE ] <br>
+                        [ declaraciones de variables ] <br> <br>
+
+                        BEGIN <br>
+                        codigo  <br>
+                        END; <br> <br>
+
+                        $$ LANGUAGE plpgsql <br>
+   | IMMUTABLE | STABLE | VOLATILE <br>
+   | CALLED ON NULL INPUT | RETURNS NULL ON NULL INPUT | STRICT <br>
+   | [ EXTERNAL ] SECURITY INVOKER | [ EXTERNAL ] SECURITY DEFINER <br>
+   | COST execution_cost <br>
+   | ROWS result_rows <br>
+   | SET configuration_parameter { TO value | = value | FROM CURRENT }; <br>
+
+
+
+   A continuación creamos nuestro primer procedimiento. <br>
+   CREATE OR REPLACE FUNCTION ejemplo() RETURNS integer AS $$ <br>
+   BEGIN <br>
+    RETURN 104; <br>
+   END; <br>
+   $$ LANGUAGE plpgsql; <br>
+   (1 row)
+                    </p>
+
+                </p>
+            </div>
+            
+        </div>
+
+        <div class="secciones">
+            <div>
+                <h3>Ahora definimos la función con un argumento:</h3>
+                <p>CREATE OR REPLACE FUNCTION ejemplo(integer) RETURNS integer AS $$ <br> <br>
+                    BEGIN <br> <br>
+                     RETURN $1; <br> <br>
+                    END; <br> <br>
+                    $$ LANGUAGE plpgsql; <br> <br>
+
+                </p>
+            </div>
+            <div>
+                <img src="img/procediminetos.png" >
+            </div>
+        </div>
+
+
+        <div class="secciones">
+            <div>
+                <h2>¿Qué es una transacción de base de datos?</h2>
+                <p>Para aplicar las propiedades de las transacciones en una base de datos SQL, es necesario seguir las cuatro propiedades fundamentales de las transacciones, conocidas como ACID: atomicidad, consistencia, aislamiento y durabilidad.  <br>
+                <ol>
+                    <li>Atomicidad: Asegura que todas las operaciones dentro de la secuencia de trabajo se completen satisfactoriamente. En SQL, se utiliza la sentencia ROLLBACK para deshacer los cambios realizados en caso de que alguna parte de la transacción falle.</li>
+                    <li>Consistencia: Garantiza que la transacción llevará la base de datos de un estado correcto a otro estado correcto. Por ejemplo, si una transacción debe transferir fondos entre cuentas bancarias, la suma total de los saldos de las cuentas involucradas antes y después de la transacción debe ser la misma.</li>
+                    <li>Aislamiento: Asegura que las transacciones se ejecutan en modo aislado y no se ven afectadas por otras transacciones en curso. En SQL, se utilizan diferentes niveles de aislamiento, como READ COMMITTED, REPEATABLE READ, y SERIALIZABLE, para controlar el nivel de aislamiento necesario para cada transacción.</li>
+                    <li>Durabilidad: Garantiza que los cambios realizados por una transacción persistan incluso en caso de fallos del sistema. En SQL, se utiliza la sentencia COMMIT para confirmar los cambios realizados por una transacción y asegurarse de que se almacenen permanentemente en la base de datos.</li>
+                    
+                </ol>
+
+                Es importante tener en cuenta que, en SQL, las transacciones se controlan mediante las sentencias COMMIT, ROLLBACK y SAVEPOINT, y se utilizan exclusivamente con operaciones INSERT, DELETE y UPDATE. <br> <br>
+
+                 <b>Ejemplo de transacción en SQL para transferir fondos entre dos cuentas bancarias:</b> <br>
+
+                 Supongamos que tenemos una tabla llamada "cuentas" con las siguientes columnas: "id_cuenta", "balance" y "propietario". Para transferir fondos de la cuenta de "Juan" a la cuenta de "María" realizaremos una transacción en SQL de la siguiente manera: <br> <br>
+
+                 BEGIN TRANSACTION; <br> <br>
+UPDATE cuentas SET balance = balance - 500 WHERE propietario = 'Juan'; <br> <br>
+UPDATE cuentas SET balance = balance + 500 WHERE propietario = 'María'; <br> <br>
+COMMIT; <br> <br>
+
+En este ejemplo, la transacción comienza con la sentencia BEGIN TRANSACTION, lo que indica que todas las operaciones siguientes forman parte de una única transacción. A continuación, se realizan dos operaciones de actualización de la tabla "cuentas" que restan 500 al balance de la cuenta de Juan y suman 500 al balance de la cuenta de María. Finalmente, se utiliza la sentencia COMMIT para confirmar la transacción y asegurarse de que los cambios realizados en la base de datos se guarden permanentemente. <br> <br>
+
+Si algo sale mal durante la transacción, se puede utilizar la sentencia ROLLBACK para deshacer todas las operaciones realizadas y volver a un estado anterior de la base de datos.
+                
+</p>
+            </div>
+            <div>
+                <img src="img/procedimientos2.png" >
+            </div>
+        </div>
+
+
+        <div class="secciones">
+            <div>
+                <h2>Para configurar de manera óptima una base de datos desde el archivo .config, </h2>
+
+                <p>
+
+                    Se pueden seguir los siguientes pasos: <br> <br>
+1. Especificar el tipo de base de datos que se está utilizando, por ejemplo, MySQL, MongoDB, PostgreSQL, etc. <br> <br>
+2. Establecer la ubicación y el nombre de la base de datos. <br> <br>
+3. Configurar las credenciales de acceso a la base de datos, como el nombre de usuario y la contraseña. <br> <br>
+4. Establecer los parámetros de conexión, como el puerto y la dirección IP. <br> <br>
+5. Configurar las opciones de almacenamiento y recuperación, como el tipo de índices y la configuración de caché. <br> <br>
+6. Establecer los límites de recursos, como el tamaño máximo de la base de datos y el número máximo de conexiones simultáneas. <br> <br>
+7. Configurar las opciones de seguridad, como el cifrado de datos y la autenticación de usuarios. <br> <br>
+8. Establecer los parámetros de registro y monitoreo, como la generación de registros de errores y la configuración de alertas. <br> <br>
+9. Verificar la configuración de la base de datos para asegurarse de que se ha establecido correctamente y de que cumple con los requisitos de la aplicación. <br> <br>
+
+Para realizar estas configuraciones, se pueden utilizar herramientas específicas de cada base de datos o editar directamente el archivo .config utilizando un editor de texto <br> <br>
+
+                </p>
+            </div>
+            <div>
+                <img src="img/procediminetos.png" >
+            </div>
+        </div>
+
+
+        <div class="secciones">
+            <div>
+                <h2>Ejemplo de tablas relacionadas.</h2>
+
+                <p>1. Tabla de clientes y tabla de pedidos: En este ejemplo, la tabla de clientes tiene una clave primaria "id_cliente", mientras que la tabla de pedidos tiene una clave primaria "id_pedido" y una clave foránea "id_cliente". La clave foránea se utiliza para vincular cada pedido con el cliente correspondiente en la tabla de clientes. <br> <br>
+
+                    Tabla de clientes: <br> <br>
+                    ``` <br>
+                    CREATE TABLE clientes ( <br>
+                      id_cliente INT PRIMARY KEY, <br>
+                      nombre VARCHAR(50), <br>
+                      email VARCHAR(50) <br>
+                    ); <br>
+                    ``` <br> <br>
+                    Tabla de pedidos: <br> <br>
+                    ```
+                    CREATE TABLE pedidos ( <br>
+                      id_pedido INT PRIMARY KEY, <br>
+                      id_cliente INT, <br>
+                      fecha_pedido DATE, <br>
+                      FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente) <br>
+                    ); <br>
+                    ``` <br> <br>
+                    
+                    2. Tabla de estudiantes y tabla de calificaciones: En este ejemplo, la tabla de estudiantes tiene una clave primaria "id_estudiante", mientras que la tabla de calificaciones tiene una clave primaria "id_calificacion" y dos claves foráneas "id_estudiante" y "id_materia". Las claves foráneas se utilizan para vincular cada calificación con el estudiante y la materia correspondientes en las tablas de estudiantes y materias.
+                    Tabla de estudiantes: <br> <br>
+                    ``` 
+                    CREATE TABLE estudiantes ( <br>
+                      id_estudiante INT PRIMARY KEY, <br>
+                      nombre VARCHAR(50), <br>
+                      carrera VARCHAR(50) <br>
+                    ); <br>
+                    ``` <br> <br>
+                    Tabla de calificaciones: <br>
+                    ``` <br>
+                    CREATE TABLE calificaciones ( <br>
+                      id_calificacion INT PRIMARY KEY, <br>
+                      id_estudiante INT, <br>
+                      id_materia INT, <br>
+                      calificacion FLOAT, <br>
+                      FOREIGN KEY (id_estudiante) REFERENCES estudiantes(id_estudiante), <br>
+                      FOREIGN KEY (id_materia) REFERENCES materias(id_materia) <br>
+                    ); <br>
+                    ``` <br><br>
+                </p>
+            </div>
+            
+        </div>
+
+        
+
+
+
+    </div>
+    <div class="menu-secundario">
+        <a class="link" href="https://www.google.com/url?sa=t&source=web&rct=j&url=https://www.postgresql.org/docs/current/plpgsql.html&ved=2ahUKEwiw1tWr-IT-AhUCSDABHZjYAwUQFnoECFUQAQ&usg=AOvVaw073cd-sI_MnglBrGlQqxai" >Más articulos sobre plpgsql</a>
+        <a href="https://appmaster.io/es/blog/diferencia-entre-ddl-y-dml"> Más articulos sobre DML y DDL </a>
+        <a href="https://learn.microsoft.com">Mas articulos sobre Procedimientos almacenados</a>
+        <a href="https://ayudaleyprotecciondatos.es/bases-de-datos/transaccionales/">Mas Información sobre la transacción de base de datos</a>
+        <a href="https://learn.microsoft.com/es-es/biztalk/technical-guides/post-configuration-database-optimizations2">Mas ejemplos sobre .config</a>
+    </div>
+
+   </div>
+   
+   <footer> "Explorar una base de datos es como descubrir un tesoro de conocimiento esperando a ser desenterrado y utilizado para crear soluciones increibles" By= ChatGpt</footer>
+    
+</body>
+</html>
